@@ -11,7 +11,7 @@ import pytz
 from django.conf import settings
 
 class User(AbstractBaseUser):
-    """Model representation for an Admin(Interviewer)
+    """Model representation for VGG App user
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True, editable=False)
@@ -24,18 +24,18 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'
 
     def __str__(self):
-        """Respresentation of Interviewer."""
+        """Respresentation of User."""
 
     def authenticate(self, password):  # NOQA
-        """Authenticate Candidate user
+        """Authenticate user
         """
-        # login candidate user if password match
+        # login user if password match
         if check_password(password, self.password):
             return True
         return False
 
 class Interviewer(models.Model):
-    """Model representation for an Admin(Interviewer)
+    """Model representation for an Interviewer
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True, editable=False)
@@ -102,8 +102,10 @@ class Candidate(AbstractBaseUser):
         return 'VGG Candidate - {}'.format(self.user.email)
 
 
-# DB Model representing an Event
 class Event(BaseAbstractModel):
+    """Model representation for a Candidate
+    """
+
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     start = models.DateTimeField()
     duration = models.IntegerField() # This is in seconds

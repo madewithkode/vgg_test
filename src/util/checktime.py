@@ -1,7 +1,7 @@
 from datetime import datetime, time
 
 def is_time_between_nine_to_five(check_time):
-    """Check if time is between 9-5(working hours)
+    """Check if time is between 9am-5pm(working hours)
 
     Args:
         check_time (time object)
@@ -14,5 +14,3 @@ def is_time_between_nine_to_five(check_time):
     if begin_time < end_time:
         return check_time >= begin_time and check_time <= end_time
     return False
-    # else: # crosses midnight
-    #     return check_time >= begin_time or check_time <= end_time

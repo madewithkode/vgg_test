@@ -15,7 +15,8 @@ class CandidateRegisterForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean(self):
-        """Handles authentication check."""
+        """Clean up form an run neccessary validations if any
+        """
 
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
@@ -30,7 +31,8 @@ class UpdateCandidateForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean(self):
-        """Handles authentication check."""
+        """Clean up form an run neccessary validations if any
+        """
 
         name = self.cleaned_data.get('name')
         stack = self.cleaned_data.get('stack')
@@ -40,12 +42,14 @@ class CandidateLoginForm(forms.Form):
     password = forms.CharField()
 
     def __init__(self, *args, **kwargs):
-        """Set up default value for instance objects."""
+        """Set up default value for instance objects.
+        """
         self.candidate_user = None
         super().__init__(*args, **kwargs)
 
     def clean(self):
-        """Handles authentication check."""
+        """Clean up form an run neccessary validations if any
+        """
 
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')

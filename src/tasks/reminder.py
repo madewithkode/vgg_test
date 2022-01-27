@@ -4,11 +4,12 @@ from accounts.models import Event, User, Candidate
 from datetime import datetime, date, timedelta
 from django.core.mail import send_mail
 
-"""
-Celery task to send interview reminder to candidate
-"""
+
 @CELERY.task(name='send_interview_reminder')
 def send_interview_reminder(user_email):
+    """
+    Celery task to send interview reminder to candidates
+    """
 
     todays_events = Event.objects.filter(start=datetime.today())
         if todays_events:

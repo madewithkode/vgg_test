@@ -14,12 +14,14 @@ class InterviewerRegisterForm(forms.Form):
     work_end = forms.CharField()
 
     def __init__(self, *args, **kwargs):
-        """Set up default value for instance objects."""
+        """Set up default value for instance objects.
+        """
         self.interviewer_user = None
         super().__init__(*args, **kwargs)
 
     def clean(self):
-        """Handles authentication check."""
+        """Clean up form an run neccessary validations if any
+        """
 
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
@@ -44,7 +46,7 @@ class UpdateInterviewerForm(forms.Form):
 
     def clean(self):
         """
-        Sanitizes the form
+        Clean up form an run neccessary validations if any
         """
 
         work_start = self.cleaned_data.get('work_start')
@@ -60,7 +62,7 @@ class CreateEventForm(forms.Form):
 
     def clean(self):
         """
-        Sanitizes the form
+        Clean up form an run neccessary validations if any
         """
 
         start_date = datetime.strptime(str(self.cleaned_data.get('start_date')), "%Y-%m-%dT%H:%M")
@@ -99,7 +101,8 @@ class InterviewerLoginForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def clean(self):
-        """Handles authentication check."""
+        """Clean up form an run neccessary validations if any
+        """
 
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')

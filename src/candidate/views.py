@@ -123,8 +123,6 @@ class CandidateLogoutView(CandidateLoginRequiredMixin, View):
         Logout candidate.
         """
 
-        print('This rannnnnnnnnnnn')
-
         request.session.flush()
         logout(request)
         return redirect(reverse('candidate:candidate_login'))

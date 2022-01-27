@@ -11,7 +11,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vgg_interview.settings.dev')
 CELERY = Celery('vgg_interview')
 
 CELERYBEAT_SCHEDULE = {
-    # Task that runs at the begining of each day to send interview reminders
+    # Task that runs at the begining(12:00AM) of each day to send interview reminders
     'send_interview_reminder': {
         'task': 'send_interview_reminder',
         'schedule': crontab(hour=0, minute=0),
