@@ -4,7 +4,7 @@ This repository houses the code for the VGG Interview scheduling App - A Django 
 
 ## Retrieve code
 
--   `$ git clone git@gitlab.com:safetity/safetity-backend.git`
+-   `$ git clone https://github.com/madewithkode/vgg_test.git`
 
 ## Requrements
 
