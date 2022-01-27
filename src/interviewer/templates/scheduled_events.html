@@ -1,0 +1,36 @@
+{% extends "base_interview.html" %}
+{% block title %}<title>Create Event</title>{% endblock title %}
+{% block link %}
+<li><a href="{% url 'interviewer:candidates_list'%}">All Candidates</a></li>
+<li><a href="{% url 'interviewer:interviewer_logout'%}">Logout</a></li>
+{% endblock link %}
+{% block pagetitle %} <h4>Scheduled Events</h4> {% endblock pagetitle %}
+{% block content %}
+        {% if messages %}
+        {% for message in messages %}
+        <P>{{message}}</P>
+        {% endfor %}
+        {% endif %}
+        {% if events %}
+            <table>
+            <tr>
+                <th>Candidate Name</th>
+                <th>Stack</th>
+                <th>Interview Date</th>
+                <th>Interview Duration</th>
+                <th>Action</th>
+            </tr>
+        {% for event in events %}
+            <tr>
+                <td>{{event.candidate.name}}</td>
+                <td>{{event.candidate.stack|join:", "}}</td>
+                <td>{{event.start}}</td>
+                <td>{{event.duration}} Seconds</td>
+                <td><a href="{% url 'interviewer:update_event' event_id=event.id %}">Update Event </a>|<a href="{% url 'interviewer:delete_event' event_id=event.id %}">Delete Event</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+        {% else %}
+            <h3>You do not have any scheduled events yet!</h3>
+        {% endif %}
+{% endblock content %}

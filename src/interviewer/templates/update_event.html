@@ -1,0 +1,32 @@
+{% extends "base_interview.html" %}
+{% block title %}<title>Uodate Event</title>{% endblock title %}
+{% block link %}
+<li><a href="{% url 'interviewer:events'%}">My Events</a></li>
+<li><a href="{% url 'interviewer:candidates_list'%}">All Candidates</a></li>
+<li><a href="{% url 'interviewer:interviewer_logout'%}">Logout</a></li>
+{% endblock link %}
+{% block pagetitle %} <h4>Update Event</h4> {% endblock pagetitle %}
+{% block content %}
+    {% if form.non_field_errors %}
+    <div>
+        {% for err in form.non_field_errors %}
+            <p>{{err}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if messages %}
+    {% for message in messages %}
+      <P>{{message}}</P>
+    {% endfor %}
+    {% endif %}
+    <form id='login-form' action="" method='POST'>
+      <label for="candidate">CANDIDATE</label>
+      <input id="candidate" type="text" readonly value="{{candidate.name}}" required>
+      <label for="start_date">EVENT START</label>
+      <input type="datetime-local" id="start_date" class="form-control" name="start_date" required placeholder="START DATE.">
+      <label for="duration">DURATION(SECONDS)</label>
+      <input id="duration" name="duration" type="number" placeholder="00" required>
+      <button type='submit'>Update Event</button>
+      {% csrf_token %}
+    </form>
+{% endblock content %}

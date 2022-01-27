@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Candidate Dashboard</title>
+  </head>
+    <style>
+      body{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        height:80vh;
+      }
+      div.parent {
+        display:inline-block;
+        background-color:#eeeeee;
+        width: 200px;
+        height:250px;
+        margin: 20px 20px;
+        text-align:center;
+      }
+      div.parent > div {
+        position:relative;
+        width:150px;
+        height: 150px;
+        font-size:28px;
+        font-weight:bold;
+        margin: 25px auto;
+        background-color:#ddd;
+        border-radius: 50%;
+        text-align:center;
+        line-height: 150px;
+      }
+      div.parent > label {
+        width: 160px;
+        display:block;
+        font-size: 19px;
+        line-height:34px;
+        color: white;
+        margin:20px auto 0 auto;
+        background-color:#0075ff;
+        border-radius:5px;
+      }
+      .b::before {
+        position:absolute;
+        content: 'or';
+        top: 25%;
+        left:125%;
+        font:16px bold;
+        color:white;
+        background-color:#0075ff;
+        border-radius:50%;
+        width:20px;
+        height:20px;
+      }
+      .b::after {
+        position:absolute;
+        content:'';
+        width:2px;
+        boder-radius:100px;
+        height:250px;
+        left:131.5%;
+        z-index:-1;
+        top:-80px;
+        background-color:#0075ff;
+      }
+    </style>
+  <body>
+    <div class="parent">
+      <label>Interviewer</label>
+    <div class="b"><a href="{% url 'interviewer:register_interviewer' %}">Register</a></div>
+    </div>
+    <div class="parent">
+      <label>Candidate</label>
+    <div><a href="{% url 'candidate:register_candidate' %}">Register</a></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+{% block title %}<title>Candidate Details</title>{% endblock title %}
+{% block link %}
+<li><a href="{% url 'candidate:candidate_events' candidate_id=user.id%}">My Events</a></li>
+<li><a href="{% url 'candidate:edit_details' candidate_id=user.id%}">Edit Profile</a></li>
+<a href="{% url 'candidate:logout_candidate'%}">Logout</a></li>
+{% endblock link %}
+{% block pagetitle %}<h4>My Profile</h4>{% endblock pagetitle %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+          <P>{{message}}</P>
+        {% endfor %}
+    {% endif %}
+        <table>
+        <tr>
+            <th>Name</th>
+            <th>Stack</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>{{candidate.name}}</td>
+            <td>{{candidate.stack|join:", "}}</td>
+            <td>
+                <a href="{% url 'candidate:edit_details' candidate_id=user.id %}">Update</a>
+            </td>
+        </tr>
+
+        </table>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}<title>Candidate Events</title>{% endblock title %}
+{% block link %}
+<li><a href="{% url 'candidate:candidate_details' candidate_id=user.id%}">My Profile</a></li>
+<li><a href="{% url 'candidate:edit_details' candidate_id=user.id%}">Edit Profile</a></li>
+<li><a href="{% url 'candidate:logout_candidate'%}">Logout</a></li>
+{% endblock link %}
+{% block pagetitle %} <h4>My Events</h4> {% endblock pagetitle %}
+{% block content %}
+{% if upcoming_events %}
+        <table>
+        <tr>
+            <th>Interview Start Time</th>
+            <th>Duration</th>
+        </tr>
+    {% for event in upcoming_events %}
+        <tr>
+            <td>{{event.start}}</td>
+            <td>{{event.duration}} Seconds</td>
+        </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+        <h3>You do not have any upcoming event yet!</h3>
+    {% endif %}
+    {% endblock content %}

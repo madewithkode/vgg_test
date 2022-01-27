@@ -1,0 +1,27 @@
+{% extends "base_interview.html" %}
+{% block title %}<title>Candidate List</title>{% endblock title %}
+{% block link %}
+<li><a href="{% url 'interviewer:events'%}">My Events</a></li>
+<li><a href="{% url 'interviewer:interviewer_logout'%}">Logout</a></li>
+{% endblock link %}
+{% block pagetitle %} <h4>Candidates List</h4> {% endblock pagetitle %}
+{% block content %}
+        {% if candidates %}
+        <table>
+        <tr>
+            <th>Candidate Name</th>
+            <th>Stack</th>
+            <th>Action</th>
+        </tr>
+        {% for candidate in candidates %}
+        <tr>
+            <td>{{candidate.name}}</td>
+            <td>{{candidate.stack|join:", "}}</td>
+            <td><a href="{% url 'interviewer:create_event' candidate_id=candidate.id %}">Schedule Event</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+        {% else %}
+            <h3>There are no candidates enrolled yet!</h3>
+        {% endif %}
+{% endblock content %}

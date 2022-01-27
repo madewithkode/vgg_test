@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}<title>Candidate Register</title>{% endblock title %}
+{% block content %}
+        {% if form.non_field_errors %}
+        <div>
+            {% for err in form.non_field_errors %}
+                <p>{{err}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+          <P>{{message}}</P>
+        {% endfor %}
+        {% endif %}
+    <form action="{% url 'candidate:register_candidate' %}" method="POST">
+    
+            <label for="python">NAME</label>
+            <div>
+                <input type="text" class="form-control" name="name" required placeholder="Full name" value="">
+            </div>
+            <label for="python">EMAIL</label>
+            <div>
+                <input type="email" class="form-control" name="email" required placeholder="Email" value="">
+            </div>
+            <label for="python">PASSWORD</label>
+            <div>
+                <input type="password" class="form-control" name="password" required placeholder="Password" value="">
+            </div>
+            <div>
+                <label>STACK</label>
+                <div>
+                    <input type="checkbox" id="python" name="stack" value="Python"> 
+                    <label for="python">Python</label><br>
+                    <input type="checkbox" id="django" name="stack" value="Django">
+                    <label for="django">Django</label><br>
+                    <input type="checkbox" id="celery" name="stack" value="Celery">
+                    <label for="celery">Celery</label><br>
+                </div>
+            </div>
+            {% csrf_token %}
+            <div >
+            <input value="Register Candidate" id="submit" type="submit" href="#"/>
+            </div>
+            <p><a href="{% url 'candidate:candidate_login' %}">Login Instead</a></p>
+        
+        </form>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "base_interview.html" %}
+{% block title %}<title>Interviewer Register</title>{% endblock title %}
+{% block content %}
+        {% if form.non_field_errors %}
+        <div>
+            {% for err in form.non_field_errors %}
+                <p>{{err}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+          <P>{{message}}</P>
+        {% endfor %}
+        {% endif %}
+    {% if form.non_field_errors %}
+    <div>
+        {% for err in form.non_field_errors %}
+            <p>{{err}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if messages %}
+    {% for message in messages %}
+      <P>{{message}}</P>
+    {% endfor %}
+    {% endif %}
+      <form id='login-form' action="{% url 'interviewer:register_interviewer' %}" method='POST'>
+        <label for="email">EMAIL</label>
+        <input name="email" type="email" id="email" placeholder="Email" required>
+        <label for="password">PASSWORD</label>
+        <input id="password" type="password" name="password" placeholder="Password" required>
+        <label for="work_start">WORK START</label>
+        <input id="work_start" type="datetime-local" id="work_start class="form-control" name="work_start" required placeholder="WORK START">
+        <label for="work_end">WORK END</label>
+        <input id="work_end" type="datetime-local" id="work_end" class="form-control" name="work_end" required placeholder="WORK END">
+        <button type='submit'>Register Interviewer</button>
+        <p><a href="{% url 'interviewer:interviewer_login' %}">Login Instead</a></p>
+        {% csrf_token %}
+      </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}<title>Edit Candidate</title>{% endblock title %}
+{% block link %}
+<li><a href="{% url 'candidate:candidate_events' candidate_id=user.id%}">My Events</a></li>
+<li><a href="{% url 'candidate:candidate_details' candidate_id=user.id%}">My Profile</a></li>
+<a href="{% url 'candidate:logout_candidate'%}">Logout</a></li>
+{% endblock link %}
+{% block pagetitle %} <h4>Edit Profile</h4> {% endblock pagetitle %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+          <P>{{message}}</P>
+        {% endfor %}
+    {% endif %}
+    <form action="{% url 'candidate:edit_details' candidate_id=user.id %}" method="POST">
+    
+            <label for="python">NAME</label>
+            <div>
+                <input type="text" class="form-control" name="name" required placeholder="Full name" value="{{candidate.name}}">
+            </div>
+            <div>
+                <label>STACK</label>
+                <div>
+                    <input type="checkbox" id="python" name="stack" value="Python"> 
+                    <label for="python">Python</label><br>
+                    <input type="checkbox" id="django" name="stack" value="Django">
+                    <label for="django">Django</label><br>
+                    <input type="checkbox" id="celery" name="stack" value="Celery">
+                    <label for="celery">Celery</label><br>
+                </div>
+            </div>
+            {% csrf_token %}
+            <div >
+            <input value="Edit Candidate" id="submit" type="submit" href="#"/>
+            </div>
+        
+        </form>
+{% endblock content %}
